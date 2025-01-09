@@ -2,6 +2,7 @@ package lesson1;
 
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
 Создать проект с использованием Maven или Gradle, добавить в него несколько
@@ -22,15 +23,22 @@ public class App
 {
     public static void main( String[] args )
     {
-        Gson gson = new Gson();
+        Gson gson1 = new Gson();
+        Gson gson2 = new GsonBuilder().setPrettyPrinting().create();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        Gson gson3 = gsonBuilder.create();
+
         Person person = new Person("Anna", "Ivanova", 30);
-        String gsonPerson = gson.toJson(person);
-        Person fromGsonPerson = gson.fromJson(gsonPerson, Person.class);
 
-        System.out.println(fromGsonPerson);
+        String personToGson1 = gson1.toJson(person);
+        String personToGson2 = gson2.toJson(person);
+        String personToGson3 = gson3.toJson(person);
 
-        System.out.println(fromGsonPerson.name);
-        System.out.println(fromGsonPerson.lastName);
-        System.out.println(fromGsonPerson.age);
+        Person fromGsonPerson = gson1.fromJson(personToGson1, Person.class);
+
+        System.out.println(fromGsonPerson  + "\n");
+        System.out.println(personToGson1 + "\n");
+        System.out.println(personToGson2 + "\n");
+        System.out.println(personToGson3 + "\n");
     }
 }

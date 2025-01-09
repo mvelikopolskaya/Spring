@@ -1,12 +1,16 @@
 package lesson1;
 
+import com.google.gson.annotations.Expose;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Person {
+    @Expose
     String name;
+    @Expose
     String lastName;
+    @Expose
     int age;
 
     public Person(String name, String lastName, int age) {
