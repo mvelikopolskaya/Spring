@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body>
+<h1>Users:</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+    </tr>
+    <tr th:each="person: ${persons}">
+        <td th:text="${person.id}"></td>
+        <td><a th:href="@{/persons/{id}(id=${person.id})}" th:text="${person.name}"></a></td>
+        <td th:text="${person.email}"></td>
+    </tr>
+</table>
+</body>
+</html>
