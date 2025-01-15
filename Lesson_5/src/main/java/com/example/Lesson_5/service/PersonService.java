@@ -17,8 +17,9 @@ public class PersonService {
         return repository.findAll();
     }
 
-    public Optional<Person> getPersonById(Long id) {
-        return repository.findById(id);
+    public String getPersonById(Long id) {
+        Person person = repository.findById(id).get();
+        return person.toString();
     }
 
     public void addPerson(Person person) {
