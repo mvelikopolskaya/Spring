@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+<h1>Users:</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+    </tr>
+    <tr th:each="person: ${persons}">
+        <td th:text="${person.id}"></td>
+        <td><a th:href="@{/persons/{id}(id=${person.id})}" th:text="${person.name}"></a></td>
+        <td th:text="${person.email}"></td>
+        <td>
+            <form method="post" style="display: inline;">
+                <button class="update-button" type="submit">Update</button>
+            </form>
+        </td>
+        <td>
+            <form method="post" style="display: inline;">
+                <button class="delete-button" type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<form method="post" style="display: inline;">
+    <button class="add-button" type="submit">Add</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,14 @@
+.add-button {
+    background-color: green;
+    color: white;
+}
+
+.update-button {
+    background-color: blue;
+    color: white;
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+}
