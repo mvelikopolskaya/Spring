@@ -1,8 +1,9 @@
-package com.example.Lesson_6.service;
+package com.example.Lesson_5_1.service;
 
 
-import com.example.Lesson_6.model.Person;
-import com.example.Lesson_6.repository.PersonRepository;
+
+import com.example.Lesson_5_1.model.Person;
+import com.example.Lesson_5_1.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,29 +24,27 @@ public class PersonService {
                 new IllegalArgumentException("Person with id " + id + " wasn't found"));
     }
 
-    public Person addPerson(String name, String email) {
-        Person person = new Person(null, name, email);
-        return repository.save(person);
+    public void addPerson(Person person) {
+        repository.save(person);
     }
 
-    public Person updatePerson(Long id, String name, String email) {
-        Person newPerson = new Person(null, name, email);
+    public void updatePerson(Long id, Person updatedPerson) {
         Optional<Person> optionalPerson = repository.findById(id);
         if (optionalPerson.isPresent()) {
             Person person = optionalPerson.get();
-            if (!newPerson.getName().isEmpty()) {
-                person.setName(newPerson.getName());
+            if (updatedPerson != null && !updatedPerson.getName().isEmpty()) {
+                person.setName(updatedPerson.getName());
             }
-            if (!newPerson.getEmail().isEmpty()) {
-                person.setEmail(newPerson.getEmail());
+            if (updatedPerson != null && !updatedPerson.getEmail().isEmpty()) {
+                person.setEmail(updatedPerson.getEmail());
             }
-            return repository.save(person);
+            repository.save(person);
         } else {
             throw new IllegalArgumentException("Person with id " + id + " wasn't found");
         }
     }
 
-    public void deleteBook(Long id) {
+    public void deletePerson(Long id) {
         repository.deleteById(id);
     }
 }

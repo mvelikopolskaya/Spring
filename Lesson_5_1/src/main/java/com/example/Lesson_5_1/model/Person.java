@@ -1,7 +1,6 @@
-package com.example.Lesson_6.model;
+package com.example.Lesson_5_1.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 
 @Entity

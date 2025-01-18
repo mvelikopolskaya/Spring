@@ -1,15 +1,13 @@
-package com.example.Lesson_6.controller;
+package com.example.Lesson_5_1.controller;
 
 
-import com.example.Lesson_6.model.Person;
-import com.example.Lesson_6.service.PersonService;
+
+import com.example.Lesson_5_1.model.Person;
+import com.example.Lesson_5_1.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-
 
 
 @Controller
@@ -31,28 +29,44 @@ public class PersonController {
         return "person_profile";
     }
 
+//    @GetMapping("/add")
+//    public String savePerson(@RequestParam(defaultValue = "") String name,
+//                             @RequestParam(defaultValue = "") String email,
+//                             Model model) {
+//        Person person = service.addPerson(name, email);
+//        model.addAttribute("person", person);
+//        return "person_profile";
+//    }
+
     @GetMapping("/add")
-    public String savePerson(@RequestParam(defaultValue = "") String name,
-                             @RequestParam(defaultValue = "") String email,
-                             Model model) {
-        Person person = service.addPerson(name, email);
-        model.addAttribute("person", person);
-        return "person_profile";
+    public String savePerson(Model model) {
+        model.addAttribute("person", new Person());
+        return "new_profile";
+    }
+
+    @PostMapping
+    public String savePerson(@ModelAttribute Person person) {
+        service.addPerson(person);
+        return "redirect:persons";
     }
 
     @GetMapping("/update/{id}")
     public String updatePerson(@PathVariable("id") Long id,
-                               @RequestParam(defaultValue = "") String name,
-                               @RequestParam(defaultValue = "") String email,
                                Model model) {
-        model.addAttribute("person", service.updatePerson(id, name, email));
-        return "person_profile";
+        model.addAttribute("person", service.getPersonById(id));
+        return "update_profile";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updatePerson(@PathVariable("id") Long id,
+                                @ModelAttribute Person updatedPerson) {
+        service.updatePerson(id, updatedPerson);
+        return "redirect:/persons";
     }
 
     @GetMapping("/delete/{id}")
     public String deletePerson(@PathVariable("id") Long id, Model model) {
-        service.deleteBook(id);
-        model.addAttribute("persons", service.getAllPersons());
-        return "persons";
+        service.deletePerson(id);
+        return "redirect:/persons";
     }
 }

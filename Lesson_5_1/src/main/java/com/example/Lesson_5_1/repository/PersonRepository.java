@@ -1,8 +1,8 @@
-package com.example.Lesson_6.repository;
+package com.example.Lesson_5_1.repository;
 
 
-import com.example.Lesson_6.model.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.Lesson_5_1.model.Person;
 import org.springframework.stereotype.Repository;
 
 
