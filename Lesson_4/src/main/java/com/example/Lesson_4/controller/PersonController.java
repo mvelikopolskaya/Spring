@@ -1,5 +1,6 @@
-package com.example.Lesson_4;
+package com.example.Lesson_4.controller;
 
+import com.example.Lesson_4.service.PersonService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

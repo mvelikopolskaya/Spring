@@ -1,4 +1,4 @@
-package com.example.Lesson_4;
+package com.example.Lesson_4.model;
 
 public class Person {
     Long id;

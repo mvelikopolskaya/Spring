@@ -1,5 +1,6 @@
-package com.example.Lesson_4;
+package com.example.Lesson_4.repository;
 
+import com.example.Lesson_4.model.Person;
 import org.springframework.stereotype.Component;
 
 
