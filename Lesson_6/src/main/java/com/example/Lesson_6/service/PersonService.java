@@ -23,21 +23,19 @@ public class PersonService {
                 new IllegalArgumentException("Person with id " + id + " wasn't found"));
     }
 
-    public Person addPerson(String name, String email) {
-        Person person = new Person(null, name, email);
+    public Person addPerson(Person person) {
         return repository.save(person);
     }
 
-    public Person updatePerson(Long id, String name, String email) {
-        Person newPerson = new Person(null, name, email);
+    public Person updatePerson(Long id, Person updatedPerson) {
         Optional<Person> optionalPerson = repository.findById(id);
         if (optionalPerson.isPresent()) {
             Person person = optionalPerson.get();
-            if (newPerson.getName() != null && !newPerson.getName().isEmpty()) {
-                person.setName(newPerson.getName());
+            if (!updatedPerson.getName().isEmpty()) {
+                person.setName(updatedPerson.getName());
             }
-            if (newPerson.getEmail() != null && !newPerson.getEmail().isEmpty()) {
-                person.setEmail(newPerson.getEmail());
+            if (!updatedPerson.getEmail().isEmpty()) {
+                person.setEmail(updatedPerson.getEmail());
             }
             return repository.save(person);
         } else {
@@ -45,7 +43,7 @@ public class PersonService {
         }
     }
 
-    public void deleteBook(Long id) {
+    public void deletePerson(Long id) {
         repository.deleteById(id);
     }
 }
