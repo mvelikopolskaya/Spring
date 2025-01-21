@@ -1,7 +1,5 @@
 package com.example.Lesson_8.service;
 
-
-import com.example.Lesson_8.aspects.ToLogAfter;
 import com.example.Lesson_8.aspects.ToLogAround;
 import com.example.Lesson_8.model.Person;
 import com.example.Lesson_8.repository.PersonRepository;
@@ -24,18 +22,18 @@ public class PersonService {
         this.logger = logger;
     }
 
-    @ToLogAfter
+    @ToLogAround
     public List<Person> getAllPersons() {
         return repository.findAll();
     }
 
-    @ToLogAfter
+    @ToLogAround
     public Person getPersonById(Long id) {
         return repository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("Person with id " + id + " wasn't found"));
     }
 
-    @ToLogAfter
+    @ToLogAround
     public Person addPerson(Person person) {
         return repository.save(person);
     }
@@ -52,14 +50,13 @@ public class PersonService {
         return repository.save(person);
     }
 
-
     @ToLogAround
     public void updateAmount(Long id, BigDecimal amount) {
         Person person = getPersonById(id);
         person.setAmount(amount);
     }
 
-
+    @ToLogAround
     public void deletePerson(Long id) {
         repository.deleteById(id);
     }
