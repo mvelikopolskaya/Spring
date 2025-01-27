@@ -31,12 +31,8 @@ public class TransferServiceSimpleTest {
 
     @Test
     public void moneyTransferDestinationAccountNotFoundFlow() {
-        Person sender = new Person();
-        sender.setId(1L);
-        sender.setAmount(new BigDecimal(1000));
-
+        Person sender = new Person(1L, "Kate", new BigDecimal(1000));
         given(repository.findById(1L)).willReturn(Optional.of(sender));
-
         given(repository.findById(2L))
                 .willReturn(Optional.empty());
 
@@ -44,7 +40,6 @@ public class TransferServiceSimpleTest {
                 IllegalArgumentException.class,
                 () -> service.changeAmount(1L, 2L, new BigDecimal(100))
         );
-
         verify(repository, never()).updateAmount(anyLong(), any());
     }
 }

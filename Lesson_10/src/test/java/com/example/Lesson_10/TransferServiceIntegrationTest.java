@@ -24,14 +24,8 @@ public class TransferServiceIntegrationTest {
 
     @Test
     public void moneyTransfer() {
-        Person sender = new Person();
-        sender.setId(1L);
-        sender.setName("Kate");
-        sender.setAmount(new BigDecimal(1000));
-        Person receiver = new Person();
-        receiver.setId(2L);
-        receiver.setName("Ann");
-        receiver.setAmount(new BigDecimal(1000));
+        Person sender = new Person(1L, "Kate", new BigDecimal(1000));
+        Person receiver = new Person(2L, "Ann", new BigDecimal(1000));
         given(repository.findById(sender.getId())).willReturn(Optional.of(sender));
         given(repository.findById(receiver.getId())).willReturn(Optional.of(receiver));
         service.changeAmount(1L, 2L, new BigDecimal(100));
