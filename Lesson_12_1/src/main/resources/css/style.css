@@ -1,0 +1,14 @@
+.add_btn {
+    background-color: green;
+    color: white;
+}
+
+.update_btn {
+    background-color: blue;
+    color: white;
+}
+
+.delete_btn {
+    background-color: red;
+    color: white;
+}
